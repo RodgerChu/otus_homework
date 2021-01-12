@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         targetPlatform:
           - StandaloneOSX
@@ -32,6 +32,13 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: |
             Library-
+
+      - name: Run tests
+        uses: webbertakken/unity-test-runner@v2.0-alpha-2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          unityVersion: 2020.2.0f1
 
       - name: Build project
         uses: webbertakken/unity-builder@v2.0-alpha-6
