@@ -1,13 +1,13 @@
 
-//using Foundation;
+using Foundation;
 using UnityEngine;
 using Zenject;
 
 public class TimeScaleDebug : MonoBehaviour
 {
     public float scale = 0.5f;
-    //[Inject] ITimeScaleManager timeScaleManager;
-    //TimeScaleHandle timeScaleHandle;
+    [Inject] ITimeScaleManager timeScaleManager;
+    TimeScaleHandle timeScaleHandle;
 
     void Awake()
     {
@@ -16,11 +16,11 @@ public class TimeScaleDebug : MonoBehaviour
 
     void OnEnable()
     {
-        //timeScaleHandle = timeScaleManager.BeginTimeScale(scale);
+        timeScaleHandle = timeScaleManager.BeginTimeScale(scale);
     }
 
     void OnDisable()
     {
-        //timeScaleManager.EndTimeScale(timeScaleHandle);
+        timeScaleManager.EndTimeScale(timeScaleHandle);
     }
 }
